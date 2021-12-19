@@ -38,7 +38,9 @@
             </div>
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 <h6 class="m-0 font-weight-bold text-primary">List des universités</h6>
-                <a href="{{ route('create.universite') }}" class="btn btn-primary">Ajouter</a>
+                @if ((Auth()->user()->type_user == '3') || (Auth()->user()->type_user == '1'))
+                    <a href="{{ route('create.universite') }}" class="btn btn-primary">Ajouter</a>
+                @endif
             </div>
 
             <div class="card-body">

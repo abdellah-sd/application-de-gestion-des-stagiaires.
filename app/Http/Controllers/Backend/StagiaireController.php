@@ -3182,9 +3182,22 @@ class StagiaireController extends Controller
         }
 
         $nbr_stagiaire = Stagiaire::count();
+        $nbr_stagiaire_valide = Stagiaire::where('memoire', '1')
+                                ->count();
+
+        $date = Carbon::now()->toDateString();
+        $nbr_stagiaire_enCours = Stagiaire::where('memoire', '0')
+                                ->whereDate('date_debut', '<',$date)
+                                ->whereDate('date_fin', '>=', $date)
+                                ->count();
+
+        $nbr_stagiaire_refuse = $nbr_stagiaire-($nbr_stagiaire_valide+$nbr_stagiaire_enCours);
 
         return view('dashboard', [
             'nbr_stagiaire' => $nbr_stagiaire,
+            'nbr_stagiaire_valide' => $nbr_stagiaire_valide,
+            'nbr_stagiaire_enCours' => $nbr_stagiaire_enCours,
+            'nbr_stagiaire_refuse' => $nbr_stagiaire_refuse,
         ]);
     }
 }

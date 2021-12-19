@@ -7,7 +7,7 @@
                     <div class="text font-weight-bold text-warning text-uppercase mb-1">
                         Nombre des responsables
                     </div>
-                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $nbr_rsp ?? '' }}</div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $nbr_rsp ?? $nbr_responsable }}</div>
                 </div>
                 <div class="col-auto">
                     <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
